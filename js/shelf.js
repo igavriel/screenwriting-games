@@ -1,59 +1,153 @@
 (function () {
   'use strict';
 
-  var BOXES_PER_SHELF = 6;
-
-  function chunk(items, size) {
-    var rows = [];
-    for (var i = 0; i < items.length; i += size) {
-      rows.push(items.slice(i, i + size));
-    }
-    return rows;
+  function trimText(value) {
+    return value != null && String(value).trim() !== '' ? String(value).trim() : '';
   }
 
-  function createGameBox(game, index) {
-    var link = document.createElement('a');
-    link.className = 'game-box';
-    link.href = game.href;
-    link.setAttribute('role', 'listitem');
-    link.setAttribute('aria-label', 'Open ' + game.title);
-    link.dataset.stagger = String(index % BOXES_PER_SHELF);
+  function isExternalHref(href) {
+    return /^https?:\/\//i.test(href);
+  }
 
-    if (game.accent) {
-      link.style.setProperty('--game-accent', game.accent);
+  function createMetaRow(label, value) {
+    if (!trimText(value)) {
+      return null;
+    }
+    var row = document.createElement('div');
+    row.className = 'book-card__meta-row';
+
+    var dt = document.createElement('span');
+    dt.className = 'book-card__meta-label';
+    dt.textContent = label;
+
+    var dd = document.createElement('span');
+    dd.className = 'book-card__meta-value';
+    dd.textContent = value;
+
+    row.appendChild(dt);
+    row.appendChild(dd);
+    return row;
+  }
+
+  function createSourcesSection(sources) {
+    if (!sources || !sources.length) {
+      return null;
     }
 
-    var inner = document.createElement('div');
-    inner.className = 'game-box__inner';
+    var section = document.createElement('div');
+    section.className = 'book-card__sources';
 
-    var spine = document.createElement('div');
-    spine.className = 'game-box__spine';
-    spine.setAttribute('aria-hidden', 'true');
+    var heading = document.createElement('h3');
+    heading.className = 'book-card__sources-heading';
+    heading.textContent = 'Sources';
+    section.appendChild(heading);
 
-    var face = document.createElement('div');
-    face.className = 'game-box__face';
+    var list = document.createElement('ul');
+    list.className = 'book-card__sources-list';
 
-    var cover = game.cover && String(game.cover).trim();
-    if (cover) {
+    sources.forEach(function (item) {
+      var href = item && trimText(item.href);
+      if (!href) {
+        return;
+      }
+      var li = document.createElement('li');
+      var a = document.createElement('a');
+      a.href = href;
+      a.textContent = trimText(item.label) || href;
+      if (isExternalHref(href)) {
+        a.target = '_blank';
+        a.rel = 'noopener noreferrer';
+      }
+      li.appendChild(a);
+      list.appendChild(li);
+    });
+
+    if (!list.children.length) {
+      return null;
+    }
+
+    section.appendChild(list);
+    return section;
+  }
+
+  function createBookCard(game, index) {
+    var article = document.createElement('article');
+    article.className = 'book-card';
+    article.setAttribute('role', 'listitem');
+
+    if (game.accent) {
+      article.style.setProperty('--game-accent', game.accent);
+    }
+
+    var info = document.createElement('div');
+    info.className = 'book-card__info';
+
+    var title = document.createElement('h2');
+    title.className = 'book-card__title';
+    title.id = 'book-title-' + index;
+    title.textContent = game.title || 'Untitled';
+    article.setAttribute('aria-labelledby', title.id);
+
+    info.appendChild(title);
+
+    var summaryText = trimText(game.summary);
+    if (summaryText) {
+      var story = document.createElement('p');
+      story.className = 'book-card__story';
+      story.textContent = summaryText;
+      info.appendChild(story);
+    }
+
+    var meta = document.createElement('div');
+    meta.className = 'book-card__meta';
+
+    var techRow = createMetaRow('Technology', trimText(game.technology));
+    if (techRow) {
+      meta.appendChild(techRow);
+    }
+    var dateRow = createMetaRow('Date', trimText(game.date));
+    if (dateRow) {
+      meta.appendChild(dateRow);
+    }
+    if (meta.children.length) {
+      info.appendChild(meta);
+    }
+
+    var sourcesBlock = createSourcesSection(game.sources);
+    if (sourcesBlock) {
+      info.appendChild(sourcesBlock);
+    }
+
+    var coverLink = document.createElement('a');
+    coverLink.className = 'book-card__cover-link';
+    coverLink.href = game.href;
+    coverLink.setAttribute('aria-label', 'Open ' + (game.title || 'story'));
+
+    var cover = document.createElement('div');
+    cover.className = 'book-card__cover';
+
+    var coverSrc = game.cover && trimText(game.cover);
+    if (coverSrc) {
       var img = document.createElement('img');
-      img.className = 'game-box__cover-img';
-      img.src = cover;
+      img.className = 'book-card__cover-img';
+      img.src = coverSrc;
       img.alt = '';
       img.decoding = 'async';
       img.loading = 'lazy';
-      face.appendChild(img);
+      cover.appendChild(img);
     }
 
-    var titleEl = document.createElement('span');
-    titleEl.className = 'game-box__title';
-    titleEl.textContent = game.title;
+    var coverTitle = document.createElement('span');
+    coverTitle.className = 'book-card__cover-title';
+    coverTitle.textContent = game.title || '';
+    cover.appendChild(coverTitle);
 
-    face.appendChild(titleEl);
-    inner.appendChild(spine);
-    inner.appendChild(face);
-    link.appendChild(inner);
+    coverLink.appendChild(cover);
 
-    return link;
+    article.appendChild(info);
+    article.appendChild(coverLink);
+
+    return article;
   }
 
   function render() {
@@ -65,20 +159,11 @@
     }
 
     mount.textContent = '';
-    var globalIndex = 0;
-    var rows = chunk(catalog, BOXES_PER_SHELF);
+    mount.className = 'book-list';
+    mount.setAttribute('role', 'list');
 
-    rows.forEach(function (rowGames) {
-      var shelf = document.createElement('div');
-      shelf.className = 'shelf';
-      shelf.setAttribute('role', 'list');
-
-      rowGames.forEach(function (game) {
-        shelf.appendChild(createGameBox(game, globalIndex));
-        globalIndex += 1;
-      });
-
-      mount.appendChild(shelf);
+    catalog.forEach(function (game, index) {
+      mount.appendChild(createBookCard(game, index));
     });
   }
 
