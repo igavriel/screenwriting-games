@@ -82,10 +82,13 @@
     var info = document.createElement('div');
     info.className = 'book-card__info';
 
+    var cardTitle = trimText(game.title) || 'Untitled';
+    var coverLabel = trimText(game.bookTitle) || trimText(game.title) || '';
+
     var title = document.createElement('h2');
     title.className = 'book-card__title';
     title.id = 'book-title-' + index;
-    title.textContent = game.title || 'Untitled';
+    title.textContent = cardTitle;
     article.setAttribute('aria-labelledby', title.id);
 
     info.appendChild(title);
@@ -101,6 +104,10 @@
     var meta = document.createElement('div');
     meta.className = 'book-card__meta';
 
+    var langRow = createMetaRow('Language', trimText(game.language));
+    if (langRow) {
+      meta.appendChild(langRow);
+    }
     var techRow = createMetaRow('Technology', trimText(game.technology));
     if (techRow) {
       meta.appendChild(techRow);
@@ -121,7 +128,7 @@
     var coverLink = document.createElement('a');
     coverLink.className = 'book-card__cover-link';
     coverLink.href = game.href;
-    coverLink.setAttribute('aria-label', 'Open ' + (game.title || 'story'));
+    coverLink.setAttribute('aria-label', 'Open ' + (coverLabel || 'story'));
 
     var cover = document.createElement('div');
     cover.className = 'book-card__cover';
@@ -139,13 +146,13 @@
 
     var coverTitle = document.createElement('span');
     coverTitle.className = 'book-card__cover-title';
-    coverTitle.textContent = game.title || '';
+    coverTitle.textContent = coverLabel;
     cover.appendChild(coverTitle);
 
     coverLink.appendChild(cover);
 
-    article.appendChild(info);
     article.appendChild(coverLink);
+    article.appendChild(info);
 
     return article;
   }
