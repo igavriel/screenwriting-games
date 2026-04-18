@@ -3,11 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Screenwriting Games</title>
+    <title>Screenwriting Digital Games — Visual Novels</title>
+    <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
-    <h1>Screenwriting Games</h1>
+    <header class="site-header">
+        <h1 class="site-title">Screenwriting Digital Games</h1>
+        <h2 class="site-subtitle" aria-hidden="true">Written by Ilan Gavriel</h2>
+        <p class="store-sign" aria-hidden="true">Visual Novels</p>
+        <p class="site-tagline">Pick a box from the shelf — each opens a playable story in your browser.</p>
+    </header>
 
-    <a href="./Twine/Task1.html">Task 1</a>
+    <main class="site-main">
+        <!--
+          Add games in js/games.js (window.GAME_CATALOG). The shelf is built by js/shelf.js.
+        -->
+        <section id="store" aria-label="Games">
+            <div id="shelf-mount"></div>
+        </section>
+
+        <noscript>
+            <div class="noscript-fallback">
+                <p>JavaScript is off. You can still open games directly:</p>
+                <ul>
+                    <li><a href="Twine/Task1.html">Task 1</a></li>
+                </ul>
+            </div>
+        </noscript>
+    </main>
+
+    <footer class="site-footer">
+      <p>&copy; Copyright I.Gavriel 2026</p>
+    </footer>
+
+    <script src="js/games.js" defer></script>
+    <script src="js/shelf.js" defer></script>
 </body>
 </html>
