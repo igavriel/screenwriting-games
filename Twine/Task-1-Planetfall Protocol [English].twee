@@ -1,0 +1,316 @@
+:: StoryTitle
+Planetfall Protocol
+
+
+:: StoryData
+{
+  "ifid": "D5004F6E-E1CB-45DD-BE19-639CA1C2F466",
+  "format": "Chapbook",
+  "format-version": "2.3.0",
+  "start": "Start",
+  "zoom": 1
+}
+
+
+:: After Cave Victory {"position":"1050,100","size":"100,100"}
+--
+# 🌄 Victory at the Cave
+
+You emerge from the cave battered, breathless, and alive.
+
+The valley feels different now — quieter, lighter, as though the entire planet has exhaled. ✨
+
+In the distance, the village lanterns still glow.
+
+> [[Return to the village 🏘️->Village After Victory]]
+
+
+:: Cave Entrance {"position":"700,100","size":"100,100"}
+battleThreshold: hasFighter || visitedVillage ? 2 : 4
+totalLife: hasDoctor ? 4 : 3
+--
+# 🕳️ The Cave
+
+You step into the cave, boots crunching over crystal dust.
+
+The air vibrates with a low growl. Then the creature appears — a towering mass of claws, stone, and living light. 👾
+
+To survive, you must land **{totalHits} hits** before suffering **{totalLife} misses**.
+
+[if !hasFighter && visitedVillage]
+The villagers' warning gives your team a critical advantage. You can hit the monster on a roll **above {battleThreshold}**. ⚔️
+
+> [[Face the monster 🎲->Fight Roll]]
+
+[if !hasFighter && !visitedVillage]
+This battle will be brutal. You can hit the monster only on a roll **above {battleThreshold}**. ⚔️
+
+> [[Face the monster 🎲->Fight Roll]]
+
+[if hasFighter]
+Your fighter can hit the monster on a roll **above {battleThreshold}**. ⚔️
+
+> [[Face the monster 🎲->Fight Roll]]
+
+
+
+:: Choose Crew {"position":"250,300","size":"100,100"}
+# 👨‍🚀 Select the Landing Team
+
+You may bring **two crew members** with you to the surface.
+
+- **Doctor** 🩺 — expert in survival, medicine, and keeping the team alive under pressure.
+- **Scientist** 🔬 — brilliant at analysis, alien biology, and understanding the unknown.
+- **Fighter** ⚔️ — trained for direct combat and dangerous field missions.
+- **Mechanic** 🔧 — master of tools, systems, and improvised technical solutions.
+
+**First crew member**  
+{dropdown menu for: 'crew1', choices: ['Doctor', 'Scientist', 'Fighter', 'Mechanic']}
+
+**Second crew member**  
+{dropdown menu for: 'crew2', choices: ['Doctor', 'Scientist', 'Fighter', 'Mechanic']}
+
+> [[Confirm the team and continue 🌌->Crew Check]]
+
+
+:: Crew Check {"position":"400,300","size":"100,100"}
+hasFighter: crew1 === 'Fighter' || crew2 === 'Fighter'
+hasDoctor: crew1 === 'Doctor' || crew2 === 'Doctor'
+--
+[if crew1 === crew2]
+# ⚠️ Duplicate Crew Selection
+
+You chose **{crew1}** twice.  
+You must select **two different crew members**.
+
+[[Choose your away team again 👨‍🚀->Choose Crew]]
+
+[unless crew1 === crew2]
+# ✅ Landing Team Confirmed
+
+Your landing team is **{crew1}** and **{crew2}**.
+
+The transporter hums. Blue light climbs around your body and your chosen officers.
+
+A heartbeat later, the world dissolves and reforms beneath a violet sky. The air is cold. The soil crunches like glass under your boots. ✨
+
+> [[Step onto the planet 🪐->Planet Surface]]
+
+
+:: Decision Point {"position":"550,100","size":"100,100"}
+# ⚠️ Decision Point
+
+The signal from the cave intensifies, bleeding across your scanner.
+
+If it’s a threat, it’s not dormant.
+
+If it’s technology… it’s running now.
+
+Your **{crew1}** speaks quickly:
+
+“If we delay, we may lose the chance to understand—or stop—whatever that is.”
+
+Your **{crew2}** hesitates.
+
+“…or we stabilize the situation first. The village might tell us what we’re dealing with.”
+
+The cave pulses again. ⚡
+
+The village remains silent.
+
+The crew looks to you.
+
+Where do you go?
+
+> [[Investigate the cave 🕳️->Cave Entrance]]
+> [[Head to the village 🏘️->Village Warning]]
+
+
+:: Fight Roll {"position":"900,100","size":"100,100"}
+roll: random.d6
+--
+# 🎲 Battle!
+
+[JavaScript]
+const threshold = battleThreshold;
+
+// map number to dice emoji
+const diceEmojis = ['⚀', '⚁', '⚂', '⚃', '⚄', '⚅'];
+const dice = diceEmojis[roll - 1];
+
+if (roll > threshold) {
+  hits = hits + 1;
+  write(`🎯 **Hit!** You rolled ${dice} (**${roll}**). The creature recoils as your strike lands true.`);
+} else {
+  misses = misses + 1;
+  write(`💥 **Miss!** You rolled ${dice} (**${roll}**). The monster crashes toward you with a roar.`);
+}
+
+[continued]
+**Hits:** {hits} / {totalHits}
+
+**Misses:** {misses} / {totalLife}
+
+[if hits >= totalHits]
+The creature shudders, lets out one final scream, and collapses into the crystal dust. 🌟
+
+> [[Leave the cave->After Cave Victory]]
+
+[if misses >= totalLife]
+Your team is overwhelmed in the darkness. The last thing you hear is the monster’s thunderous roar... ☠️
+
+> [[Mission failed->Lose]]
+
+[unless hits >= totalHits || misses >= totalLife]
+The battle is not over yet.
+
+> [[Roll again 🎲->Fight Roll]]
+
+
+:: Lose {"position":"900,400","size":"100,100"}
+--
+# ❌ Mission Lost
+
+The cave grows silent.
+
+High above, the **Aurora Drift** remains in orbit, waiting for a signal that will never come. 🌑
+
+**Ending:** _Lost in the Dark_
+
+> {restart link, label: 'Try again 🔄'}
+
+
+:: Planet Briefing {"position":"250,100","size":"100,100"}
+# 🪐 The Mysterious Planet
+
+Below your ship hangs a world of violet clouds, black oceans, and jagged continents streaked with glowing blue veins. It is beautiful… and unsettling. 🌌
+
+Long-range scans detect two unusual things:
+
+- a **small settlement** on the surface, warm and active 🏘️
+- a **dense energy signature** pulsing from a nearby cave system 🕳️
+
+The atmosphere is breathable. The surface is stable. But the signal from the cave does not match any known lifeform in the Federation archives.
+
+Whatever waits down there, it is old, powerful, and very much alive. 👀
+
+You order a landing party to prepare.
+
+> [[Choose your away team 👨‍🚀->Choose Crew]]
+
+
+:: Planet Surface {"position":"400,100","size":"100,100"}
+# 🪐 Planet Surface
+
+The transporter light fades.
+
+A low vibration hums through the ground beneath your boots. Your scanner struggles to stabilize—readings spike, drop, then spike again.
+
+A sharp signal locks in.
+
+From a **cave entrance** carved into the rock ahead.
+
+It pulses. Controlled. Artificial. Recent. ⚡
+
+Not a natural formation. Not background noise.
+
+Your **{crew1}** steps forward, eyes fixed on the readings.
+
+“Captain… this is deliberate. Whatever is generating that signal is active *right now*.”
+
+A faint second reading flickers at the edge of your scanner—
+
+A **village**, off to the side. No movement. No transmissions. Barely detectable. 🏘️
+
+Your **{crew2}** glances at it briefly, then back to you.
+
+“Captain… if there are survivors, they’ve been quiet for a long time.”
+
+The signal from the cave spikes again.
+
+Stronger this time.
+
+> [[Assess the situation->Decision Point]]
+
+
+:: Start {"position":"100,100","size":"100,100"}
+crew1: 'Doctor'
+crew2: 'Scientist'
+hasFighter: false
+hasDoctor: true
+visitedVillage: false
+hits: 0
+misses: 0
+roll: 0
+battleThreshold: 4
+totalHits: 2
+totalLife: 4
+--
+# 🚀 Planetfall Protocol
+
+The exploration cruiser **Aurora Drift** glides through deep space like a silver needle threading the stars. ✨
+
+You are its captain — calm under pressure, curious in the face of the unknown, and responsible for every soul aboard.
+
+For weeks, your crew has followed faint signals from an uncharted world at the edge of mapped space. The transmissions are fragmented, rhythmic, and unmistakably artificial. 📡
+
+Some officers compare the mission to the grand expeditions of old spacefaring legends — part diplomacy, part science, part danger.
+
+Tonight, at last, the mysterious planet fills the main viewscreen.
+
+> [[Continue to the briefing 🧭->Planet Briefing]]
+
+
+:: Village After Victory {"position":"1050,250","size":"100,100"}
+--
+# 🏘️ Return to the Village
+
+When the villagers see you coming back from the cave, they fall silent.
+
+Then the elder smiles.
+
+“It is finished,” she says softly.
+
+Your crew says nothing, but the truth is written across your armor, your soot-streaked faces, and the relieved rise and fall of your breathing. 🙌
+
+The villagers thank you for ending the threat that haunted their world.
+
+You tap your communicator and call the **Aurora Drift**.
+
+> [[Beam up in triumph 🚀->Win Heroic]]
+
+
+:: Village Warning {"position":"625,300","size":"100,100"}
+visitedVillage: true
+--
+# 🏘️ The Village
+
+The villagers tense when they see your landing team, but an elder steps forward and studies your uniforms.
+
+“Travelers from the sky,” she says, “the beast in the cave can be defeated — but only if you strike when the crystal plates beneath its neck begin to glow.” ✨
+
+She points toward the cliffs.
+
+“Do not waste your strength on its armored hide. Watch the light. Then strike fast.”
+
+Your crew has learned something important. 🧠
+
+The warning confirms the best moment to attack and may be the difference between defeat and survival.
+
+You thank the villagers and turn toward the cave.
+
+> [[Go to the cave with the villagers' warning 🕳️->Cave Entrance]]
+
+
+:: Win Heroic {"position":"1050,400","size":"100,100"}
+--
+# 🏆 Mission Complete
+
+You explored the unknown, uncovered the truth, and led your team through danger to victory.
+
+Back aboard the **Aurora Drift**, this mission will be told and retold as one of the great adventures of your command. 🚀✨
+
+**Ending:** _Captain of Planetfall_
+
+> {restart link, label: 'Play again 🔄'}
+
