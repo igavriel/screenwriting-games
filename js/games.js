@@ -19,8 +19,8 @@ window.GAME_CATALOG = [
   {
     title: 'זה לא היה בתדריך',
     bookTitle: 'Not in the brief',
-    href: 'Twine/Task-2-Not in the brief [Hebrew].html',
-    cover: '',
+    href: 'Twine/Task-3-Not in the brief [Hebrew].html',
+    cover: './Twine/assets/task-1-cover.png',
     accent: '#8b6239',
     summary:
       'משימת חקר שגרתית. כוכב לא ממופה. אות לא מזוהה. הכול תועד. הכול נותח. הכול אמור להיות תחת שליטה.',
@@ -31,9 +31,11 @@ window.GAME_CATALOG = [
       { label: 'Twine', href: 'https://twinery.org/' },
       { label: 'Chapbook', href: 'https://klembot.github.io/chapbook/guide/' },
       { label: 'Task 1 First Version (English)', href: 'Twine/Task-1-Planetfall Protocol [English].html' },
-      { label: 'Task 1 Twine format', href: 'Twine/Task-1-Planetfall Protocol [English].twee' },
       { label: 'Task 2 Second Version (Hebrew)', href: 'Twine/Task-2-Not in the brief [Hebrew].html' },
+      { label: 'Task 1 Twine format', href: 'Twine/Task-1-Planetfall Protocol [English].twee' },
       { label: 'Task 2 Twine format', href: 'Twine/Task-2-Not in the brief [Hebrew].twee' },
+      { label: 'Task 3 Twine format', href: 'Twine/Task-3-Not in the brief [Hebrew].twee' },
+
     ],
   },
 ];
