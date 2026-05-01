@@ -9,6 +9,16 @@
     return /^https?:\/\//i.test(href);
   }
 
+  function viewerHref(href) {
+    if (isExternalHref(href)) {
+      return href;
+    }
+    if (/\.(md|markdown|ink|twee)$/i.test(href)) {
+      return 'utils/viewer.html?file=' + encodeURIComponent(href);
+    }
+    return href;
+  }
+
   function createMetaRow(label, value) {
     if (!trimText(value)) {
       return null;
@@ -52,7 +62,7 @@
       }
       var li = document.createElement('li');
       var a = document.createElement('a');
-      a.href = href;
+      a.href = viewerHref(href);
       a.textContent = trimText(item.label) || href;
       if (isExternalHref(href)) {
         a.target = '_blank';

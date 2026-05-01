@@ -38,4 +38,22 @@ window.GAME_CATALOG = [
 
     ],
   },
+  {
+    title: 'The Ugly Duckling and the Royal Makeover',
+    bookTitle: 'The Ugly Duckling and the Royal Makeover',
+    href: 'Ink/royal-makeover/web/index.html',
+    cover: './Ink/assets/royal-makeover-cover.jpeg',
+    accent: '#8b6239',
+    summary: 'You are a small, muddy duckling with big dreams and questionable hygiene. One morning, you are invited to a royal ball only to discover you are not "fairy-tale appropriate".',
+    language: 'English',
+    technology: 'Ink',
+    date: '05/2026',
+    sources: [
+      { label: 'Ink', href: 'https://www.inklestudios.com/ink/' },
+      { label: 'Basics tutorial', href: 'https://www.inklestudios.com/ink/web-tutorial/' },
+      { label: 'Full tutorial', href: 'https://github.com/inkle/ink/blob/master/Documentation/WritingWithInk.md' },
+      { label: 'Story (Ink format)', href: 'Ink/royal-makeover/royal-makeover.ink' },
+      { label: 'Story Flow Chart', href: 'Ink/royal-makeover/README.md' },
+    ],
+  },
 ];
