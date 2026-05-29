@@ -9,3 +9,6 @@
 
 # Ignore Mac files
 .DS_Store
+
+# Ignore Ren'Py dists
+*-dists/
