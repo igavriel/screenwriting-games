@@ -4,6 +4,8 @@
 ## them. Lines beginning with a single '#' mark are commented-out code, and you
 ## may want to uncomment them when appropriate.
 
+# Enable RTL support
+define config.rtl = True
 
 ## Basics ######################################################################
 
@@ -12,8 +14,7 @@
 ##
 ## The _() surrounding the string marks it as eligible for translation.
 
-define config.name = _("the_game_that_refused_to_end")
-
+define config.name = _("The Game That Refused To End")
 
 ## Determines if the title given above is shown on the main menu screen. Set
 ## this to False to hide the title.
