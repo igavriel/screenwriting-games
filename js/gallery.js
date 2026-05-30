@@ -21,8 +21,23 @@
   function assetUrl(src) {
     var s = trimText(src);
     if (!s) return '';
-    if (s.indexOf('/') === 0 || /^https?:\/\//i.test(s)) return s;
-    return '../' + s.replace(/^\.\//, '');
+    if (/^https?:\/\//i.test(s)) return s;
+    if (s.indexOf('/') === 0) {
+      return s
+        .split('/')
+        .map(function (seg, i) {
+          return i === 0 ? seg : encodeURIComponent(seg);
+        })
+        .join('/');
+    }
+    var rel = s.replace(/^\.\//, '');
+    rel = rel
+      .split('/')
+      .map(function (seg) {
+        return encodeURIComponent(seg);
+      })
+      .join('/');
+    return '../' + rel;
   }
 
   function catalogIndexFromQuery(catalog) {

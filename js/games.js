@@ -93,4 +93,41 @@ window.GAME_CATALOG = [
       { label: 'Swamp party', src: './Ink/assets/swamp-party.jpeg' },
     ],
   },
+  {
+    titleEn: 'The Game That Refused to End',
+    titleHe: 'המשחק שלא רוצה להסתיים',
+    href: 'https://igavriel.itch.io/the-game-that-refused-to-end',
+    cover: './renpy/the_game_that_refused_to_end/game/images/bg_vn_room_normal.jpeg',
+    accent: '#8b6239',
+    summaryEn:
+      'A game that refuses to end. A game that keeps going. A game that won\'t stop.',
+    summaryHe:
+      'משחק שלא רוצה להסתיים. משחק שממשיך. משחק שלא מסתיים.',
+    language: 'Hebrew',
+    technology: 'Renpy',
+    date: '06/2026',
+    externalLinks: [
+      { label: 'Renpy', href: 'https://www.renpy.org/' },
+      {  label: 'Documentation', href: 'https://www.renpy.org/doc/html/index.html' },
+    ],
+    versions: [
+      { label: 'V1 Web version (Hebrew)', href: 'https://igavriel.itch.io/the-game-that-refused-to-end' },
+    ],
+    gallery: [
+      { label: 'Blank Dark Screen background', src: './renpy/the_game_that_refused_to_end/game/images/bg_blank_dark_screen.jpeg' },
+      { label: 'Fake Epic Storm Castle background', src: './renpy/the_game_that_refused_to_end/game/images/bg_fake_epic_storm_castle.jpeg' },
+      { label: 'Project Folder Memory background', src: './renpy/the_game_that_refused_to_end/game/images/bg_project_folder_memory.jpeg' },
+      { label: 'Room Normal background', src: './renpy/the_game_that_refused_to_end/game/images/bg_vn_room_normal.jpeg' },
+      { label: 'Room Glitch background', src: './renpy/the_game_that_refused_to_end/game/images/bg_vn_room_glitch.jpeg' },
+      { label: 'Anxious Fake OK', src: './renpy/the_game_that_refused_to_end/game/images/character anxious_fake_ok.png' },
+      { label: 'Blank Screen Honest', src: './renpy/the_game_that_refused_to_end/game/images/character blank_screen_honest.png' },
+      { label: 'Default Fake Smile', src: './renpy/the_game_that_refused_to_end/game/images/character default_fake_smile.png' },
+      { label: 'Fake Dramatic Heroine', src: './renpy/the_game_that_refused_to_end/game/images/character fake_dramatic_heroine.png' },
+      { label: 'Final Real', src: './renpy/the_game_that_refused_to_end/game/images/character final_real.png' },
+      { label: 'Sarcastic Really', src: './renpy/the_game_that_refused_to_end/game/images/character sarcastic_really.png' },
+      { label: 'Stop Narrator', src: './renpy/the_game_that_refused_to_end/game/images/character stop_narrator.png' },
+      { label: 'Vulnerable Honest', src: './renpy/the_game_that_refused_to_end/game/images/character vulnerable_honest.png' },
+      { label: 'With Shadow Truth', src: './renpy/the_game_that_refused_to_end/game/images/character with_shadow_truth.png' },
+    ],
+  },
 ];
