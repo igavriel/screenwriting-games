@@ -14,7 +14,7 @@ define config.rtl = True
 ##
 ## The _() surrounding the string marks it as eligible for translation.
 
-define config.name = _("One More Moment...")
+define config.name = _("רק עוד רגע...")
 
 ## Determines if the title given above is shown on the main menu screen. Set
 ## this to False to hide the title.
@@ -31,6 +31,7 @@ define config.version = "1.0"
 ## triple-quotes, and leave a blank line between paragraphs.
 
 define gui.about = _p("""
+היא הייתה אמורה להיות עוד דמות זמנית במשחק קצר - לחייך, לומר כמה שורות, ולהיעלם בסוף. אבל הפעם היא שמה לב לתסריט, לתמונות ולשחקן, ומבקשת רק עוד רגע לפני שהמסך מחשיך.
 """)
 
 

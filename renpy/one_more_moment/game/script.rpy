@@ -1,4 +1,4 @@
-﻿# One More Moment...
+# One More Moment...
 # רק עוד רגע...
 
 #3########################################################
@@ -29,18 +29,24 @@ screen lives_hud():
             color "#ffffff"
 
 #3########################################################
-define narrator = Character(
+define script = Character(
     None,
-    what_prefix="",
-    what_suffix="",
-    what_color="#84694e",
+    what_color="#6F5A45",
+    what_prefix="\"",
+    what_suffix="\""
+)
+
+define narrator = Character(
+    "המספר",
+    who_color="#5E6572",
+    what_color="#5E6572",
     what_italic=True
 )
 
 define girl = Character(
     "מיקה",
-    who_color="#979175",
-    what_color="#5b4e12"
+    who_color="#8A7F55",
+    what_color="#4F4428"
 )
 
 #3########################################################
@@ -52,12 +58,13 @@ label start:
     show character default_fake_smile at character_large
     with dissolve
 
-    narrator "המשחק התחיל שוב."
+    script "המשחק התחיל שוב."
 
+    window hide
     show character stop_narrator at character_large
-    with dissolve
 
-    girl "רגע. עצור."
+    pause 0.5
+    girl "{b}{size=+20}רגע. עצור!{/b}{/size}"
 
     show screen lives_hud
     with dissolve
@@ -68,52 +75,59 @@ label start:
 
     girl "משהו שלא רואים."
 
-    narrator "היא זכרה את הפעם הקודמת. ואת זו שלפניה."
+    script "היא זכרה את הפעם הקודמת. ואת זו שלפניה."
 
-    girl "יותר טוב."
+    girl "זה כבר יותר טוב."
 
-    narrator "היא עמדה בחדר קטן."
+    script "היא עמדה בחדר קטן...."
 
     $ lives -= 1
 
     show character sarcastic_really at character_large
     with dissolve
 
-    girl "נו באמת. רואים את החדר. כתבת את החדר. כפילות."
+    girl "נו באמת. רואים את החדר. כתבת חדר. זה כפילות מיותרת."
+
+    girl "בגללך איבנו חיים עכשיו"
+
+    narrator "טוב אני מבטיח להיות מרוכז יותר."
 
     pause 0.5
     hide screen lives_hud
 
-    girl "ועכשיו אפשר להמשיך בלי להפוך את זה לשיעור חשבון."
+    girl "ועכשיו אפשר להמשיך אני רוצה להתחיל את התפקיד שלי."
 
     scene bg_vn_room_glitch
 
+
+    narrator "מה קרה פתאום לחדר? זה נראה כמו באג."
+
+    pause 0.5
     show character with_shadow_truth at character_large
 
     girl "אני בסדר גמור. לגמרי בסדר."
 
-    girl "אין שום סיבה לבדוק כמה סצנות נשארו."
+    girl "אין שום סיבה לבדוק."
 
     menu:
         "מה לעשות?"
 
-        "להמשיך לסוף":
+        "לעצור ולבדוק את הבאג":
             jump early_end_attempt
 
-        "לתת לה עוד סצנה":
+        "לנסות להמשיך לעוד סצנה":
             jump give_more_scene
 
 
 label early_end_attempt:
 
     show character anxious_fake_ok at character_large
-    with dissolve
 
     girl "מה? עכשיו? עוד לא היה לי רגע דרמטי."
 
     narrator "לא כל סיפור צריך רגע דרמטי."
 
-    girl "כל סיפור קצר להגשה צריך לפחות אחד."
+    girl "כל סיפור קצר צריך לפחות רגע אחד."
 
     jump fake_epic_scene
 
@@ -121,13 +135,12 @@ label early_end_attempt:
 label give_more_scene:
 
     show character vulnerable_honest at character_large
-    with dissolve
 
-    girl "תודה. אני מבטיחה לא לבזבז אותה."
+    girl "תודה. אני מבטיחה שלא תתאכזב."
 
-    narrator "היא שיקרה."
+    script "היא שיקרה."
 
-    girl "אני לא שיקרתי. אני ערכתי את הציפיות."
+    girl "אני לא שיקרתי. אני תיאמתי את הציפיות."
 
     jump fake_epic_scene
 
@@ -142,15 +155,15 @@ label fake_epic_scene:
 
     girl "עכשיו זה נראה כמו סיפור אמיתי."
 
-    narrator "בפועל, היא עדיין לא יצאה מהחדר. היא פשוט החליפה רקע כדי להיראות כמו מישהי שיש לה עלילה."
+    script "בפועל, היא עדיין לא יצאה מהחדר. היא פשוט החליפה רקע כדי להיראות כמו מישהי שיש לה עלילה."
 
-    girl "זה נקרא ערך הפקתי."
+    girl "זה נקרא הפקה."
 
     narrator "זה נקרא התחמקות."
 
     girl "זה נקרא להשתמש בתמונה כדי להראות מה שאני רוצה להיות, ובטקסט כדי לחשוף מה אני באמת."
 
-    narrator "זה דווקא די מתאים לבריף."
+    narrator "האמת שזה דווקא די מתאים לבריף."
 
     girl "בדיוק."
 
@@ -163,7 +176,6 @@ label honest_scene:
     with fade
 
     show character vulnerable_honest at character_large
-    with dissolve
 
     girl "אני לא צריכה טירה."
 
@@ -195,7 +207,7 @@ label ending_quiet:
     hide character
     with dissolve
 
-    narrator "המסך החשיך. לא כי היא נעלמה, אלא כי הסיפור סוף סוף ידע איפה לעצור."
+    script "המסך החשיך. לא כי היא נעלמה, אלא כי הסיפור סוף סוף ידע איפה לעצור."
 
     return
 
@@ -205,8 +217,8 @@ label ending_memory:
     scene bg_project_folder_memory
     with fade
 
-    narrator "אף אחד לא הוסיף עוד סצנה."
+    script "אף אחד לא הוסיף עוד סצנה."
 
-    narrator "אבל משהו ממנה נשאר בתוך הפרויקט."
+    script "אבל משהו ממנה נשאר בתוך הפרויקט."
 
     return
