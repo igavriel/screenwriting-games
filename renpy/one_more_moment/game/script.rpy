@@ -1,5 +1,5 @@
-﻿# The Game That Refused to End
-# המשחק שלא רוצה להסתיים
+﻿# One More Moment...
+# רק עוד רגע...
 
 #3########################################################
 image bg_vn_room_normal = im.Scale("images/bg_vn_room_normal.jpeg", 1920, 1080)
