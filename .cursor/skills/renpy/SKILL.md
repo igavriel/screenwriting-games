@@ -15,7 +15,7 @@ Authoritative API behavior: [Ren'Py documentation](https://www.renpy.org/doc/htm
 ## Scope
 
 - Apply when editing paths under `renpy/**` or when the user asks about Ren'Py in this repository.
-- Do **not** change Twine, Ink, or shelf JS unless the task includes catalog or gallery wiring (`js/games.js`, `js/gallery.js`).
+- Do **not** change Twine, Ink, or shelf JS unless the task includes catalog or gallery wiring (`config/games.js`, `js/gallery.js`).
 
 ## Workflow
 
@@ -23,7 +23,7 @@ Authoritative API behavior: [Ren'Py documentation](https://www.renpy.org/doc/htm
 2. Read that game’s `game/script.rpy`, `game/options.rpy`, and `game/screens.rpy` before editing.
 3. If API behavior is unclear, follow the link in [reference.md](reference.md)—do not invent Ren'Py APIs.
 4. Make minimal diffs; match existing `Character` definitions, transforms, and comment style.
-5. If assets should appear on the web shelf gallery, update `gallery` in [js/games.js](../../js/games.js) per [repo-conventions.md](repo-conventions.md).
+5. If assets should appear on the web shelf gallery, update `gallery` in [config/games.js](../../config/games.js) per [repo-conventions.md](repo-conventions.md).
 6. Suggest verifying in the Ren'Py Launcher (Launch Project; Shift+R to reload scripts). See [Developer tools](https://www.renpy.org/doc/html/developer_tools.html).
 
 ## Core rules

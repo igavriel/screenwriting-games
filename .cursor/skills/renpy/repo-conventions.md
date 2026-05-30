@@ -57,7 +57,7 @@ Keep RTL when editing Hebrew dialogue or UI in projects that define it. Characte
 
 ## Web shelf and gallery
 
-The static shelf reads [js/games.js](../../js/games.js). Ren'Py game **One More Moment...** is catalogued with:
+The static shelf reads [config/games.js](../../config/games.js). Ren'Py game **One More Moment...** is catalogued with:
 
 - `href` — external itch.io URL (playable build), not a local `renpy/` path
 - `cover` / `gallery[].src` — site-root-relative paths
@@ -76,7 +76,7 @@ Example:
 { label: 'Default Fake Smile', src: './renpy/one_more_moment/game/images/character default_fake_smile.png' }
 ```
 
-Only add or change `js/games.js` when the task includes exposing new art on the shelf gallery.
+Only add or change `config/games.js` when the task includes exposing new art on the shelf gallery.
 
 ## Git hygiene
 
@@ -92,7 +92,7 @@ Avoid staging unless the user asks:
 
 | File | Role |
 | ---- | ---- |
-| [js/games.js](../../js/games.js) | Catalog, optional `gallery` |
+| [config/games.js](../../config/games.js) | Catalog, optional `gallery` |
 | [js/gallery.js](../../js/gallery.js) | Picture grid + lightbox (`?game=N`) |
 | [utils/gallery.html](../../utils/gallery.html) | Gallery page shell |
 

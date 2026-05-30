@@ -3,7 +3,7 @@ Screenwriting for digital games
 
 GitHub Pages: https://igavriel.github.io/screenwriting-games/
 
-to add a new game, add the game to the `js/games.js` file.
+to add a new game, add the game to the `config/games.js` file.
 
 the game should be a object with the following properties:
 - title: the title of the game

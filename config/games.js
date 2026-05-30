@@ -97,7 +97,7 @@ window.GAME_CATALOG = [
     titleEn: 'One More Moment...',
     titleHe: 'רק עוד רגע...',
     href: 'https://igavriel.itch.io/one-more-moment',
-    cover: './renpy/one_more_moment/game/images/bg_vn_room_normal.jpeg',
+    cover: './renpy/one_more_moment/game/images/cover.jpeg',
     accent: '#8b6239',
     summaryEn:
       'She was supposed to be just NPC in a short game - smile, say a few lines, and disappear at the end. But this time, she notices the script, the images, and the player, and asks for one more moment before the screen fades to black.',
@@ -114,6 +114,7 @@ window.GAME_CATALOG = [
       { label: 'V1 Web version (Hebrew)', href: 'https://igavriel.itch.io/one-more-moment' },
     ],
     gallery: [
+      { label: 'Cover', src: './renpy/one_more_moment/game/images/cover.jpeg' },
       { label: 'Blank Dark Screen background', src: './renpy/one_more_moment/game/images/bg_blank_dark_screen.jpeg' },
       { label: 'Fake Epic Storm Castle background', src: './renpy/one_more_moment/game/images/bg_fake_epic_storm_castle.jpeg' },
       { label: 'Project Folder Memory background', src: './renpy/one_more_moment/game/images/bg_project_folder_memory.jpeg' },
