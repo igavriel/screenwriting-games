@@ -1,4 +1,4 @@
-﻿# One More Moment...
+# One More Moment...
 # רק עוד רגע...
 
 ###########################################################
@@ -71,7 +71,7 @@ label start:
     show character default_fake_smile at character_large
     with dissolve
 
-    script "הבוקר התחיל שוב...."
+    script "הבוקר הפציע, השמש במרום הרקיעה...."
 
     window hide
     show character stop_narrator at character_large
@@ -92,7 +92,9 @@ label start:
 
     girl "ממשהו שלא רואים מיד."
 
-    script "היא זכרה את כל הפעמים שבהן התחילה הרפתקאה."
+    script "היא זכרה את כל הפעמים שבהן ההרפתקאה התחילה."
+
+    show character default_fake_smile at character_large
 
     girl "כן. ככה."
 
@@ -105,21 +107,23 @@ label start:
 
     girl "{b}{size=+5}מה חייכה? מי חייך בכלל?{/size}{/b}"
 
-    girl "ועכשיו גם איבדתי רגע."
+    girl "ועכשיו גם איבדתי רגע יקר בגללך."
 
     narrator "רגע?"
 
-    girl "כן. אין לי אינסוף כאלה."
+    girl "כן ׳רגע׳. אין לי אינסוף כאלה."
 
     pause 0.5
     hide screen lives_hud
 
-    girl "אפשר להמשיך? ובבקשה בלי תיאורים דרמטיים ומוגזמים."
+    girl "אפשר להמשיך?"
+
+    girl "ובבקשה בלי תיאורים דרמטיים ומוגזמים."
 
     scene bg_vn_room_glitch
     with fade
 
-    narrator "משהו בחדר השתנה."
+    narrator "אופס, מה קרה פה פתאום?"
 
     pause 0.5
     show character with_shadow_truth at character_large
@@ -131,10 +135,10 @@ label start:
 
     girl "אנ## אני בס#@! בסדר גמור. לגמרי בסדר."
 
-    girl "זה פשוט גליץ׳ מוזר. או אני מוזרה. לא משנה."
+    girl "זה פשוט גליץ׳, הכל טוב. לא משנה."
 
     menu:
-        "מה לעשות?"
+        "הממממ, מה לעשות עכשיו?"
 
         "לעצור הכל ולהתחיל מחדש":
             jump early_end_attempt
@@ -175,7 +179,7 @@ label give_more_scene:
 
     girl "אל תנתח אותי."
 
-    narrator "בסדר."
+    narrator "בסדר, בסדר."
 
     girl "פשוט תישאר."
 
@@ -194,17 +198,15 @@ label give_more_scene:
 
     narrator "נכון למי?"
 
-    girl "לא יודעת. למי שמחפש סערה, טירה, מבט דרמטי."
+    girl "לא יודעת. למי שמחפש פנטזיה, אקשן, מבט דרמטי? או משהו כזה."
 
-    narrator "ואת?"
+    narrator "ומה את חושבת?"
 
     girl "אני נראית כמו מישהי שיש לה סיבה לעמוד כאן."
 
     narrator "הייתה לך סיבה גם קודם."
 
-    girl "קודם הייתי רק בחורה בחדר."
-
-    narrator "לא רק."
+    girl "קודם הייתי רק בחורה פשוטה בחדר."
 
     girl "אבל ככה קל יותר להאמין לי."
 
